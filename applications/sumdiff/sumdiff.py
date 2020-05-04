@@ -29,8 +29,8 @@ quads = []
 
 for i, x in enumerate(q):
   for j, y in enumerate(q[i:], start=i):
-    for z in q[j:]:
-      if 3 + x + y + z in q:
+    for k, z in enumerate(q[j:], start=j):
+      if 3 + x + y + z in q[k:]:
           quads.append((x, y, z, 3 + x + y + z))
 
 for (x, y, z, c) in quads:

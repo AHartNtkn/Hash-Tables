@@ -1,5 +1,19 @@
-def no_dups(s):
-    # Implement me.
+import sys
+sys.path.append('../../hashtable')
+from hashtable import HashTable
+
+def no_dups(s, htbl = None):
+    if htbl is None:
+        htbl = HashTable() # Really, this should be done with a set.
+
+    ret = []
+
+    for w in s.split(" "):
+        if htbl.get(w) is None:
+            htbl.put(w, True)
+            ret.append(w)
+            
+    return " ".join(ret)
 
 
 if __name__ == "__main__":

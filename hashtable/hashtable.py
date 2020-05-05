@@ -22,7 +22,9 @@ def hte_remove(lp, key):
 
     if lp.next is not None:
         if lp.next.key == key:
+            tmp = lp.next
             lp.next = lp.next.next
+            del tmp
         else:
             hte_remove(lp.next, key)
     return lp

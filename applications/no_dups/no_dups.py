@@ -2,15 +2,15 @@ import sys
 sys.path.append('../../hashtable')
 from hashtable import HashTable
 
-def no_dups(s, htbl = None):
-    if htbl is None:
-        htbl = HashTable() # Really, this should be done with a set.
+def no_dups(s, dup_set = None):
+    if dup_set is None:
+        dup_set = set()
 
     ret = []
 
     for w in s.split(" "):
-        if htbl.get(w) is None:
-            htbl.put(w, True)
+        if w not in dup_set:
+            dup_set.add(w)
             ret.append(w)
             
     return " ".join(ret)

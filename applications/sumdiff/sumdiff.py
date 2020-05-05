@@ -20,6 +20,10 @@ def f(x):
 #   ==>
 # 4 a + 6 + 4 b + 6 == 4 c + 6 - 4 d - 6
 #   ==>
+# 4 a + 6 + 4 b + 6 + 4 d + 6 == 4 c + 6
+#   ==>
+# 4 (a + b + d) + 18 == 4 c + 6
+#   ==>
 # 4 (a + b + d) + 12 == 4 c
 #   ==>
 # a + b + d + 3 == c
@@ -27,14 +31,14 @@ def f(x):
 
 quads = []
 
-for i, x in enumerate(q):
-  for j, y in enumerate(q[i:], start=i):
-    for k, z in enumerate(q[j:], start=j):
-      if 3 + x + y + z in q[k:]:
-          quads.append((x, y, z, 3 + x + y + z))
+for i, a in enumerate(q):
+  for j, b in enumerate(q[i:], start=i):
+    for k, d in enumerate(q[j:], start=j):
+      if a + b + d + 3 in q[k:]:
+        quads.append((a, b, d, a + b + d + 3))
 
-for (x, y, z, c) in quads:
-  p = set(permutations([x,y,z]))
+for (a, b, d, c) in quads:
+  p = set(permutations([a,b,d]))
 
-  for x, y, z in p:
-    print(f"f({x}) + f({y}) = f({c}) - f({z})")
+  for a, b, d in p:
+    print(f"f({a}) + f({b}) = f({c}) - f({d})")
